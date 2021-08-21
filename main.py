@@ -38,7 +38,7 @@ class UpdateTasks(BaseModel):
 
 @program.get("/")
 def function():
-    return "Hello"
+    return "HellO"
 
 @program.get("/welcome/")
 def welcome(name: str, lastname: str):
