@@ -2,8 +2,12 @@ from fastapi import FastAPI, Path
 from pydantic import BaseModel
 from typing import Optional
 import mongoengine as db
+import os
 program = FastAPI()
-db.connect("MongoFastAPI")
+host = os.environ['HOST']
+port = os.environ['PORT']
+db_name = os.environ['DB']
+db.connect(db_name, host=host, port=int(port))
 
 
 class Todo(db.Document):
@@ -33,6 +37,8 @@ class UpdateTasks(BaseModel):
     Task: Optional[str] = None
     Description: Optional[str] = None
     Time: Optional[int] = None
+
+
 
 @program.get("/")
 def function():

@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - db-data:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+  server:
+    depends_on:
+      - mongodb
+    build: .
+    environment: 
+      - HOST=mongodb 
+      - PORT=27017
+      - DB=my_db
+    ports: 
+      - 8000:8000
+volumes: 
+  db-data:
+  
+    
+      
